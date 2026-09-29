@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Log Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>AI Log Analyzer</h1>
+    <p>Analyze technical logs using Generative AI.</p>
+    <div class="navigation">
+        <a href="/history">View Analysis History</a>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+
+        <label for="log-input">Paste your log below:</label>
+        <br>
+
+        <textarea
+            id="log-input"
+            name="log"
+            rows="12"
+            cols="70"
+            placeholder="Paste your server, network or system log here..."></textarea>
+
+    <br><br>
+
+    <label for="log-file">Or upload a log file:</label>
+    <br>
+
+    <input
+        type="file"
+        id="log-file"
+        name="log_file"
+        accept=".log,.txt">
+
+    <br><br>
+
+    <button type="submit">Analyze Log</button>
+
+
+    </form>
+    {% if log_text %}
+    <h2>Received Log:</h2>
+    <pre>{{ log_text }}</pre>
+    {% endif %}
+
+    {% if analysis %}
+    <h2>AI Analysis:</h2>
+    <pre>{{ analysis }}</pre>
+    {% endif %}
+</body>
+
+</html>

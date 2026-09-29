@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Analysis History</h1>
+
+    <a href="/">Back to Analyzer</a>
+
+    {% if analyses %}
+
+        {% for item in analyses %}
+
+            <hr>
+
+            <h2>Analysis #{{ item[0] }}</h2>
+
+            <p><strong>Date:</strong> {{ item[3] }}</p>
+
+            <h3>Log:</h3>
+            <pre>{{ item[1] }}</pre>
+
+            <h3>AI Analysis:</h3>
+            <pre>{{ item[2] }}</pre>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No analyses have been saved yet.</p>
+
+    {% endif %}
+
+</body>
+
+</html>
