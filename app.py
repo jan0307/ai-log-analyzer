@@ -37,7 +37,10 @@ def home():
         log_file = request.files.get("log_file")
 
         if log_file and log_file.filename:
-            log_text = log_file.read().decode("utf-8")
+            try:
+                log_text = log_file.read().decode("utf-8")
+            except UnicodeDecodeError:
+                analysis = "The uploaded file could not be read. Please upload a UTF-8 text or log file."
            
         if log_text:
             prompt = f"""
